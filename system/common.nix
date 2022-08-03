@@ -5,24 +5,17 @@ let
     username = "david";
 in
 {
-  # imports = [
-    # "${modulesPath}/profiles/minimal.nix"
-  # ];
-
   system.stateVersion = "22.05";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;  
-  networking.hostName = "wsl2-x86-gui";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-    ];
   };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -70,12 +63,30 @@ in
     libreoffice
   ];
 
-  programs.git.enable = true;
+#  programs.git = {
+#                enable = true;
+#                #package = pkgs.gitAndTools.gitFull;
+#            
+#                userName = "David Gonzalez Martin";
+#                userEmail = "davidgm94.work@protonmail.com";
+#            
+#                extraConfig = {
+#		  core = {
+#                    editor = "nvim";
+#		    lf = "open";
+#		    eol = "lf";
+#		    autocrlf = false;
+#		  };
+#		  github.user = "davidgm94";
+#		  init.defaultBranch = "main";
+#		  credential.helper = "store";
+#                  color.ui = true;
+#                };
+#              };
 
   # Enable nix flakes
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-
 }
