@@ -13,12 +13,10 @@
 
     outputs = { self, nixpkgs, nixos-wsl, homeManager, ... } @attrs: 
     let
-        wsl2_x86_64_gui_hostname = "wsl2-x86-gui";
-        laptop_x86_64_linux_hostname = "linux-x86-laptop";
 	user = "david";
     in
     {
-        nixosConfigurations.${wsl2_x86_64_gui_hostname} = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.wsl2-x86-gui = nixpkgs.lib.nixosSystem {
 	    system = "x86_64-linux";
 	    specialArgs = attrs;
 	    modules = [
@@ -30,19 +28,19 @@
 		    automountPath = "/mnt";
 		    defaultUser = "${user}";
 		    startMenuLaunchers = true;
-		    wslConf.network.hostname = "${wsl2_x86_64_gui_hostname}";
+		    wslConf.network.hostname = "wsl2-x86-gui";
 		    };
 		}
 	    ];
 	};
 
-	nixosConfigurations.${laptop_x86_64_linux_hostname} = nixpkgs.lib.nixosSystem {
+	nixosConfigurations.linux-x86-laptop = nixpkgs.lib.nixosSystem {
 	    system = "x86_64-linux";
 	    specialArgs = attrs;
 	    modules = [
 	        ./system/common.nix
 		./system/common_linux.nix
-		./system/${laptop_x86_64_linux_hostname}/configuration.nix
+		./system/linux-x86-laptop/configuration.nix
 	    ];
 	};
     };

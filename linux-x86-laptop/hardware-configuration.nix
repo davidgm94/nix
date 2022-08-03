@@ -7,17 +7,17 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/31755e27-e9f4-4dfc-be75-bfa7036412bc";
+    { device = "/dev/disk/by-label/nixos_root";
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/F248-2F94";
+    { device = "/dev/disk/by-label/EFI_PART";
       fsType = "vfat";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/078ee6fa-df0e-483d-92a2-922b1a7ce3b2";
+    { device = "/dev/disk/by-label/nixos_home";
       fsType = "ext4";
     };
 
