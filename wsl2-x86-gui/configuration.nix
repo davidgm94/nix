@@ -13,6 +13,7 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;  
+  networking.hostName = "wsl2-x86-gui";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
