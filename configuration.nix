@@ -2,9 +2,8 @@
 
 with lib;
 let
-
-username = "david";
- in
+    username = "david";
+in
 {
   imports = [
     "${modulesPath}/profiles/minimal.nix"
@@ -26,14 +25,9 @@ username = "david";
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    xfce.xfce4-whiskermenu-plugin
-    xfce.xfce4-pulseaudio-plugin
+    # Common packages
     zsh
-    firefox
     neovim
-    signal-desktop
-    tdesktop
-    discord
     git
     lm_sensors
     htop
@@ -45,15 +39,11 @@ username = "david";
     qemu_full
     rustup
     rust-analyzer
-    mpv
-    vlc
-    smplayer
     nodejs
     tokei
     bat
     bash-completion
     zsh-completions
-    libreoffice
     xorriso
     cmake
     fira
@@ -65,6 +55,18 @@ username = "david";
     man
     xclip
     pciutils
+    # Desktop environment
+    xfce.xfce4-whiskermenu-plugin
+    xfce.xfce4-pulseaudio-plugin
+    # GUI programs not used for development
+    firefox
+    signal-desktop
+    tdesktop
+    discord
+    mpv
+    vlc
+    smplayer
+    libreoffice
   ];
 
   # Enable nix flakes
