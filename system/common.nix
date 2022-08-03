@@ -14,6 +14,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.zsh;
+    initialPassword = "abcd1234";
   };
 
   # List packages installed in system profile. To search, run:
