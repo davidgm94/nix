@@ -10,6 +10,7 @@
     outputs = { self, nixpkgs, nixos-wsl, ... } @attrs: 
     let
         wsl2_x86_64_gui_hostname = "wsl2-x86-gui";
+        laptop_x86_64_linux_hostname = "linux-x86-laptop";
 	user = "david";
     in
     {
@@ -17,7 +18,7 @@
 	    system = "x86_64-linux";
 	    specialArgs = attrs;
 	    modules = [
-	        ./configuration.nix
+		./${wsl2_x86_64_gui_hostname}/configuration.nix
 		nixos-wsl.nixosModules.wsl {
 		wsl = {
 		    enable = true;
@@ -27,6 +28,14 @@
 		    wslConf.network.hostname = "${wsl2_x86_64_gui_hostname}";
 		    };
 		}
+	    ];
+	};
+
+	nixosConfigurations.${laptop_x86_64_linux_hostname} = nixpkgs.lib.nixosSystem {
+	    system = "x86_64-linux";
+	    specialArgs = attrs;
+	    modules = [
+		./${laptop_x86_64_linux_hostname}/configuration.nix
 	    ];
 	};
     };
