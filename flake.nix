@@ -23,8 +23,14 @@
 	    system = system;
 	    specialArgs = attrs;
 	    modules = [
-		./system/common.nix
-		./system/common_linux.nix
+		./nix/system/common.nix
+		./nix/system/common_linux.nix
+		home-manager.nixosModules.home-manager
+		{
+		    home-manager.useGlobalPkgs = true;
+		    home-manager.useUserPackages = true;
+		    home-manager.users.${user} = import ./nix/user/home.nix;
+		}
 		nixos-wsl.nixosModules.wsl {
 		  wsl = {
 		    enable = true;
@@ -41,14 +47,14 @@
 	    system = system;
 	    specialArgs = attrs;
 	    modules = [
-	        ./system/common.nix
-		./system/common_linux.nix
-		./system/linux-x86-laptop/configuration.nix
+	        ./nix/system/common.nix
+		./nix/system/common_linux.nix
+		./nix/system/linux-x86-laptop/configuration.nix
 		home-manager.nixosModules.home-manager
 		{
 		    home-manager.useGlobalPkgs = true;
 		    home-manager.useUserPackages = true;
-		    home-manager.users.${user} = import ./user/home.nix;
+		    home-manager.users.${user} = import ./nix/user/home.nix;
 		}
 	    ];
 	};
