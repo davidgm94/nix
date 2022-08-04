@@ -65,26 +65,9 @@ in
     libreoffice
   ];
 
-#  programs.git = {
-#                enable = true;
-#                #package = pkgs.gitAndTools.gitFull;
-#            
-#                userName = "David Gonzalez Martin";
-#                userEmail = "davidgm94.work@protonmail.com";
-#            
-#                extraConfig = {
-#		  core = {
-#                    editor = "nvim";
-#		    lf = "open";
-#		    eol = "lf";
-#		    autocrlf = false;
-#		  };
-#		  github.user = "davidgm94";
-#		  init.defaultBranch = "main";
-#		  credential.helper = "store";
-#                  color.ui = true;
-#                };
-#              };
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 
   # Enable nix flakes
   nix.package = pkgs.nixFlakes;
