@@ -63,6 +63,8 @@ in
     vlc
     smplayer
     libreoffice
+    libxml2
+    xarchiver
   ];
 
   environment.variables = {
